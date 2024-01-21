@@ -1,0 +1,27 @@
+- hosts: all #if we will execute only master or worker or devops or qa we can replace with that all
+  tasks:
+  - name: install the latest version of Apache #name of the task can be anything
+    yum:  #this module calls yum module
+      name: 
+        - httpd #this name belongs to yum, it should be the name of the package,what package to install
+        - wget
+        - tree
+      state: present #it can be latest or present, version of httpd
+  - name: install git   #next task, we can have as many tasks as we wont
+    yum:
+      name: git
+      state: latest
+  - name: Start service httpd, if not started #this module calls service
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: Stop service httpd, if started
+    service:
+      name: httpd
+      state: stopped
+  - name: remove git   #next task, we can have as many tasks as we wont
+    yum:
+      name: git
+      state: absent
+      #in ansible we have to specify what file to execute, not like in terraform. ansible-playbook main.yml
