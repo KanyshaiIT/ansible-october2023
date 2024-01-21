@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+  - debug: #msg="OS is {{ ansible_os_family }}" #native or builtin variables
+      msg: "OS is: {{ ansible_distribution }}" #or we can use this way, we modified the code
+  #execute this pbook but use hosts file
+  #thank builtin variables we can do our code more dynamic, we can use 1 code with any users, with redhat or debian distributions
+  - name: install Apache
+    include_tasks: "{{ ansible_distribution }}.yml" 
+    #we provided .yml because variable output will be taken from files CentOS.yml or Ubuntu.yml

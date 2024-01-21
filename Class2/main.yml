@@ -1,0 +1,25 @@
+- hosts: all #if we will execute only master or worker or devops or qa we can replace with that all
+  tasks:
+  - name: install the latest version of Apache #name of the task can be anything
+    yum:  #this module calls yum module
+      name: git
+      state: latest  #here we are installing apache in service module we are restarting it
+    notify: restart httpd #if part before changed it will notify and execute next task notify/ we need to tell which handler to notify, to execute
+  - name: install unzip
+    yum:
+      name: unzip
+      state: present
+    notify: install tree
+  handlers: #handlers-if task before is changed use handlers(like if-else statement)
+  - name: restart httpd #this module calls service
+    service:
+      name: httpd
+      state: restarted   #we can have as many handlers as we wont, any handler
+  - name: install wget
+    yum:
+      name: wget
+      state: present
+  - name: install tree
+    yum:
+      name: tree
+      state: present

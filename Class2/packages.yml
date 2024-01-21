@@ -1,0 +1,14 @@
+- hosts: all #this one is a soft coded way
+  tasks:
+  - name: Install packages
+    yum: #if we use ubuntu we gonna use apt module, not yum
+      name: "{{ packages }}"
+      state: present #if we dont provide state, by default it will using present
+    vars:
+      packages:
+      - wget
+      - git
+      - httpd
+      - tree
+      - unzip
+

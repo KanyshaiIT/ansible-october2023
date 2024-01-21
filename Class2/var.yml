@@ -1,0 +1,9 @@
+- hosts: all
+  # vars:
+  #   name: kaizen
+  #   team: DevOps  this one is 1st way how we can use vatiables,3rd way is using vi editor mkdir group_vars/vi group_vars/devops
+  tasks:  #debug is useful to print some msg, errors,to print anything we wont, to debugging our issues 
+  - debug: msg="Hello {{ name }}, I'm a {{ team }}" #we can convert this to variable, ansible use programming language python
+  #through the command line we can also use variables, variables are replaced, 
+  #and run just for once ansible-playbook --extra-vars=name=kanyshai --extra-vars=team=Dev var.yml-2nd way using var-s
+  #group_vars is not waidly used, we can use it for specific group/ folders name should be exactly group_vars
