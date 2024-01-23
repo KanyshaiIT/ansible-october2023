@@ -1,0 +1,10 @@
+- name: install the latest version of Apache #name of the task can be anything
+  yum:  #this module calls yum module
+    name: httpd
+    state: latest #it can be latest or present, version of httpd
+  
+- name: Start service httpd, if not started #this module calls service
+  service:
+    name: httpd
+    state: started
+    enabled: yes
