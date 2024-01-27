@@ -1,0 +1,28 @@
+- hosts: all
+  become: yes
+  tasks:
+   - hostname: 
+      name: '{{ inventory_hostname }}'
+      #kaizen #through the ansible we can change the hostname of our machine, we can 
+   - debug: 
+       msg: "{{ ansible_distribution }}"
+   - name: install apache
+     include_tasks: "{{ ansible_distribution }}.yml"
+
+# - hosts: worker1
+#   tasks:
+#    - hostname: 
+#       name: kanyshai
+
+# - hosts: worker2 #this one is ec2-user, thats why it failed
+#   become: yes #become sudo
+#   tasks:
+#    - hostname: 
+#       name: aws-test1
+
+# - hosts: worker3
+#   become: yes
+#   tasks:
+#    - hostname: 
+#       name: aws-test2  #if we have many VMs we have to do dynamic inventary
+#       #to do that one we have to remove all hosts and add to the first hosts 
